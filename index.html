@@ -3,30 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>KVaS Portfolio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
+
+/* ================= ROOT ================= */
+
 :root{
   --red:#e61e1e;
-  --gray:#d9d9d9;
+  --gray:#f1f1f1;
   --white:#ffffff;
   --dark:#222;
-  --font:'Montserrat',sans-serif;
   --max:1200px;
+  --font:'Montserrat',sans-serif;
 }
 
-*{margin:0;padding:0;box-sizing:border-box;}
+/* ================= RESET ================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
 body{
   font-family:var(--font);
   color:var(--dark);
   padding-top:60px;
   padding-bottom:60px;
+  overflow-x:hidden;
+  background:var(--white);
 }
 
-img{display:block;max-width:100%;}
+img{
+  max-width:100%;
+  display:block;
+}
 
 .container{
   max-width:var(--max);
@@ -34,11 +49,16 @@ img{display:block;max-width:100%;}
   padding:0 1rem;
 }
 
-h1,h2,h3{color:var(--red);}
+h1,h2,h3{
+  color:var(--red);
+}
 
-p{max-width:850px;margin:.6rem auto;}
+section{
+  padding:3rem 0;
+}
 
-/* ===== FIXED BARS ===== */
+/* ================= HEADER / FOOTER ================= */
+
 header,footer{
   position:fixed;
   left:0;
@@ -51,215 +71,204 @@ header,footer{
 header{top:0;}
 footer{bottom:0;}
 
-.header-inner,.footer-inner{
+.header-inner,
+.footer-inner{
   height:100%;
   display:flex;
   align-items:center;
 }
 
-.header-inner{justify-content:flex-start;}
-.footer-inner{justify-content:center;gap:1rem;}
+.header-inner{
+  justify-content:flex-start;
+}
+
+.footer-inner{
+  justify-content:center;
+  gap:.8rem;
+}
 
 .logo{
-  font-size:2.2rem;
-  font-weight:800;
-  letter-spacing:2px;
-  text-transform:uppercase;
   color:white;
+  font-weight:800;
+  font-size:2rem;
+  letter-spacing:2px;
 }
 
 .footer-btn{
-  background:var(--red);
+  background:none;
   color:white;
   border:2px solid white;
-  border-radius:999px;
-  padding:.4rem 1rem;
+  border-radius:30px;
+  padding:.4rem .9rem;
   cursor:pointer;
+  font-size:.9rem;
 }
 
-/* ===== SECTIONS ===== */
-section{padding:3rem 0;} 
+/* ================= HERO ================= */
 
-/* отдельный фон для hero */
 .hero{
   background:var(--gray);
-}
-.section-gray{background:var(--gray);} 
-.section-white{background:var(--white);} 
-
-/* ===== HERO ===== */
-.hero{
   text-align:center;
+}
+
+.hero h1{
+  font-size:2.5rem;
+}
+
+.hero p{
+  margin:.5rem auto;
+  max-width:700px;
+}
+
+/* ================= SKINS ================= */
+
+.skins-list{
+  display:flex;
+  flex-direction:column;
+}
+
+/* Каждый блок */
+.skin-item{
+  width:100vw;
+  margin-left:calc(50% - 50vw);
+  background:var(--white);
+  padding:4rem 1rem 5rem;
+}
+
+/* Фон через чередование */
+.skin-item:nth-child(even){
   background:var(--gray);
 }
 
-/* ===== SKINS ===== */
+/* Внутренний контейнер */
+.skin-inner{
+  max-width:var(--max);
+  margin:auto;
 
-.skins-list {
-  display: flex;
-  flex-direction: column;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:2rem;
+  align-items:center;
 }
 
-.skin-item {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  overflow: visible;
-  position: relative;
-
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  align-items: center;
-  gap: 2rem;
-
-  padding: 4rem 1rem 6rem;
+/* Авто-чередование сторон */
+.skin-item:nth-child(even) .skin-inner{
+  direction:rtl;
 }
 
-.skin-item:not(:first-child) {
-  margin-top: -140px;
+.skin-item:nth-child(even) .skin-inner > *{
+  direction:ltr;
 }
 
-.skin-item:nth-child(odd) {
-  background: var(--gray);
+/* Круг */
+.skin-image{
+  width:420px;
+  height:420px;
+  margin:auto;
+
+  background:var(--red);
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-.skin-item:nth-child(even) {
-  background: var(--white);
+/* Картинка в круге */
+.skin-image img{
+  width:110%;
+  height:110%;
+  object-fit:contain;
 }
 
-.skin-item:first-child {
-  background: var(--white) !important;
+/* Отражение */
+.skin-item:nth-child(even) .skin-image img{
+  transform:scaleX(-1);
 }
 
-.skin-inner {
-  max-width: var(--max);
-  margin: auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  align-items: center;
-  gap: 2rem;
+/* Текст */
+.skin-text{
+  text-align:center;
+  font-size:1.2rem;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
 
-.skin-image {
-  width: 520px;
-  height: 520px;
-  border-radius: 50%;
-  background: var(--red);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-  transform: translateY(40px);
+.skin-text h3{
+  font-size:1.8rem;
+  margin-bottom:.5rem;
 }
 
-.skin-image img {
-  width: 115%;
-  height: 115%;
-  object-fit: contain;
+/* ================= MODELS ================= */
+
+.models{
+  background:var(--white);
 }
-
-.skin-item:nth-child(even) .skin-image img {
-  transform: scaleX(-1);
-}
-
-/* === ИЗМЕНЕНИЯ ДЛЯ ЦЕНТРИРОВАНИЯ ТЕКСТА === */
-.skin-text {
-  text-align: center; /* Центрируем текст */
-  font-size: 1.3rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Центрируем содержимое по горизонтали */
-  justify-content: center; /* Центрируем по вертикали */
-}
-
-.skin-text h3 {
-  font-size: 1.9rem;
-  text-align: center; /* Заголовок тоже по центру */
-  width: 100%;
-}
-
-.skin-text p {
-  margin: 0.5rem 0;
-  text-align: center; /* Параграфы по центру */
-  width: 100%;
-}
-
-/* Убираем выравнивание по правому краю для четных элементов */
-.skin-item:nth-child(even) .skin-text,
-.skin-item:nth-child(even) .skin-text h3,
-.skin-item:nth-child(even) .skin-text p {
-  text-align: center; /* Теперь все по центру */
-}
-
-/* ===== ADAPTIVE ===== */
-@media (max-width: 700px) {
-  .skin-image {
-    width: 300px;
-    height: 300px;
-    transform: translateY(120px);
-  }
-
-  .skin-item:not(:first-child) {
-    margin-top: -70px;
-  }
-
-  /* Убедимся, что на мобильных текст тоже по центру */
-  .skin-text,
-  .skin-item:nth-child(even) .skin-text {
-    text-align: center;
-  }
-}
-
-/* ===== MODELS ===== */
 
 .models-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:1.8rem;
+  gap:1.5rem;
   margin-top:2rem;
 }
 
 .model-card{
   position:relative;
   aspect-ratio:1/1;
+
+  background:var(--gray);
+  border-radius:18px;
+
   display:flex;
-  flex-direction:column;
   justify-content:flex-end;
   align-items:center;
+
   padding:1rem;
-  border-radius:20px;
-  overflow:visible;
-  font-weight:600;
-  color:var(--red);
+  overflow:hidden;
 }
 
+/* Картинки без обрезки */
 .model-card img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
   position:absolute;
   inset:0;
-  z-index:0;
+
+  width:100%;
+  height:100%;
+
+  object-fit:contain;
+  padding:10px;
 }
 
 .model-card span{
   position:relative;
-  z-index:1;
-  background:rgba(255,255,255,.85);
-  padding:.4rem .8rem;
-  border-radius:12px;
+  z-index:2;
+
+  background:rgba(255,255,255,.9);
+  padding:.3rem .7rem;
+  border-radius:10px;
+
+  color:var(--red);
+  font-weight:600;
 }
 
-.section-gray .model-card{background:var(--white);} 
-.section-white .model-card{background:var(--gray);} 
+/* ================= ADDON ================= */
 
-/* ===== ADDON ===== */
+.addon{
+  background:var(--gray);
+  text-align:center;
+}
+
+.addon p{
+  max-width:700px;
+  margin:.5rem auto;
+}
 
 .addon-box{
-  width:100%;
-  max-width:800px;
-  aspect-ratio:16/9;
+  max-width:900px;
   margin:2rem auto 0;
-  overflow:visible;
+  aspect-ratio:16/9;
 }
 
 .addon-box iframe{
@@ -268,226 +277,183 @@ section{padding:3rem 0;}
   border:none;
 }
 
-/* ===== ADAPTIVE ===== */
-@media(max-width:700px){
+/* ================= MOBILE ================= */
+
+@media(max-width:768px){
+
+  header,footer{
+    height:50px;
+  }
+
+  body{
+    padding-top:50px;
+    padding-bottom:50px;
+  }
+
+  .logo{
+    font-size:1.5rem;
+  }
+
+
+  /* HERO */
+
+  .hero h1{
+    font-size:1.7rem;
+  }
+
+
+  /* SKINS */
+
+  .skin-item{
+    padding:2rem 1rem 3rem;
+  }
+
+  .skin-inner{
+    grid-template-columns:1fr;
+  }
 
   .skin-image{
-    width:300px;
-    height:300px;
-    transform:translateY(120px);
+    width:220px;
+    height:220px;
   }
 
-  .skin-item:not(:first-child){
-    margin-top:-70px;
+  .skin-text{
+    font-size:1.05rem;
   }
 
-  .skin-text,
-  .skin-item:nth-child(even) .skin-text{
-    text-align:center;
-  }
-}
-
-
-  .skin-item:not(:first-child){
-    margin-top:-90px;
+  .skin-text h3{
+    font-size:1.4rem;
   }
 
-  .skin-text,
-  .skin-item:nth-child(even) .skin-text{
-    text-align:center;
+
+  /* MODELS */
+
+  .models-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:1rem;
   }
 
-/* === AUTO BACKGROUNDS === */
 
-/* чередование всех основных блоков в main */
-main > *:nth-child(odd){
-  background:var(--gray);
-}
+  /* FOOTER */
 
-main > *:nth-child(even){
-  background:var(--white);
-}
+  .footer-btn{
+    font-size:.8rem;
+    padding:.3rem .6rem;
+  }
 
-/* если внутри есть вложенные секции (например, модели) */
-main > * > section:nth-child(odd){
-  background:var(--gray);
-}
-
-main > * > section:nth-child(even){
-  background:var(--white);
-}
-
-/* чередование скинов */
-
-.skin-item:nth-child(odd){
-  background:var(--white);
-}
-
-.skin-item:nth-child(even){
-  background:var(--gray);
-}
-
-
-
-/* === FIX BACKGROUNDS, MODELS & SKINS === */
-
-/* БАЗОВОЕ ЧЕРЕДОВАНИЕ ФОНА ДЛЯ ВСЕХ БЛОКОВ */
-main > *{
-  width:100%;
-}
-
-main > *:nth-child(odd){
-  background:var(--gray) !important;
-}
-
-main > *:nth-child(even){
-  background:var(--white) !important;
-}
-
-/* МОДЕЛИ: фон берём от родителя, подложки отдельно */
-.models,
-.models-section,
-.models-block{
-  background:inherit !important;
-}
-
-.model-card,
-.model-item{
-  background:rgba(255,255,255,0.9);
-}
-
-main > *:nth-child(odd) .model-card,
-main > *:nth-child(odd) .model-item{
-  background:rgba(255,255,255,0.85);
-}
-
-main > *:nth-child(even) .model-card,
-main > *:nth-child(even) .model-item{
-  background:rgba(230,230,230,0.9);
-}
-
-/* КРУГИ СКИНОВ: разрешаем выход и лёгкое обрезание */
-.skin-item{
-  position:relative;
-  overflow:hidden; /* чтобы низ обрезался */
-}
-
-.skin-circle{
-  position:relative;
-  z-index:1;
-  transform:translateY(40px);
-}
-
-/* ЧТОБЫ ПОСЛЕДНИЙ СКИН ТОЖЕ ОБРЕЗАЛСЯ */
-.skin-item:last-child{
-  padding-bottom:80px;
-  overflow:hidden;
-}
-
-/* ФИКС YOUTUBE */
-.video-wrapper,
-.youtube,
-.video{
-  width:100%;
-  max-width:900px;
-  margin:0 auto;
-  aspect-ratio:16/9;
-}
-
-.video-wrapper iframe,
-.youtube iframe,
-.video iframe{
-  width:100% !important;
-  height:100% !important;
-  min-height:300px;
 }
 
 </style>
 </head>
+
 <body>
 
 <!-- HEADER -->
+
 <header>
   <div class="container header-inner">
-    <div class="logo">KVAS PORTFOLIO</div>
+    <div class="logo">KVAS</div>
   </div>
 </header>
 
+
 <!-- HERO -->
-<section class="hero section-gray">
+
+<section class="hero">
+
   <div class="container">
-    <h1>text text text<br>text text</h1>
-    <p>text text text text text</p>
-    <p>text text text text</p>
+
+    <h1>My Portfolio</h1>
+
+    <p>3D models, Minecraft skins and addons</p>
+
   </div>
+
 </section>
 
+
 <!-- SKINS -->
-<section style="padding-top:0;">
+
+<section>
 
   <div class="skins-list">
 
+
+    <!-- Skin -->
+
     <div class="skin-item">
+
       <div class="skin-inner">
+
         <div class="skin-image">
           <img src="skin1.png">
         </div>
+
         <div class="skin-text">
-          <h3>Skin name</h3>
-          <p>text text text</p>
-          <p>text text text</p>
+          <h3>Skin Name</h3>
+          <p>Description</p>
+          <p>More info</p>
         </div>
+
       </div>
+
     </div>
 
+
     <div class="skin-item">
+
       <div class="skin-inner">
-        <div class="skin-text">
-          <h3>Skin name</h3>
-          <p>text text text</p>
-          <p>text text text</p>
-        </div>
+
         <div class="skin-image">
           <img src="skin2.png">
         </div>
+
+        <div class="skin-text">
+          <h3>Skin Name</h3>
+          <p>Description</p>
+          <p>More info</p>
+        </div>
+
       </div>
+
     </div>
 
+
     <div class="skin-item">
+
       <div class="skin-inner">
+
         <div class="skin-image">
           <img src="skin3.png">
         </div>
+
         <div class="skin-text">
-          <h3>Skin name</h3>
-          <p>text text text</p>
-          <p>text text text</p>
+          <h3>Skin Name</h3>
+          <p>Description</p>
+          <p>More info</p>
         </div>
+
       </div>
+
     </div>
 
-    <div class="skin-item">
-      <div class="skin-inner">
-        <div class="skin-image">
-          <img src="skin3.png">
-        </div>
-        <div class="skin-text">
-          <h3>Skin name</h3>
-          <p>text text text</p>
-          <p>text text text</p>
-        </div>
-      </div>
-    </div>
 
   </div>
+
 </section>
 
+
 <!-- MODELS -->
-<section class="section-white">
+
+<section class="models">
+
   <div class="container">
+
     <h2>3D MODELS</h2>
 
+
     <div class="models-grid">
+
 
       <div class="model-card">
         <img src="model1.png">
@@ -508,56 +474,93 @@ main > *:nth-child(even) .model-item{
         <img src="model4.png">
         <span>Model</span>
       </div>
-       
+
 
     </div>
+
   </div>
+
 </section>
+
 
 <!-- ADDON -->
-<section class="section-gray">
-  <div class="container">
-    <h2 style="text-align:center;">ADD-ON</h2>
 
-    <p>Описание аддона. Здесь можно написать, что он делает.</p>
-    <p>Как используется и чем полезен.</p>
+<section class="addon">
+
+  <div class="container">
+
+    <h2>ADD-ON</h2>
+
+    <p>Описание аддона</p>
+
+    <p>Как работает и зачем нужен</p>
+
 
     <div class="addon-box">
-      <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
+
+      <iframe
+        src="https://www.youtube.com/embed/VIDEO_ID"
+        allowfullscreen>
+      </iframe>
+
     </div>
+
   </div>
+
 </section>
 
+
 <!-- FOOTER -->
+
 <footer>
+
   <div class="container footer-inner">
 
-    <button class="footer-btn copy-btn" data-copy="vladkuprin.mouse@gmail.com">
+    <button
+      class="footer-btn copy-btn"
+      data-copy="vladkuprin.mouse@gmail.com">
+
       vladkuprin.mouse@gmail.com
+
     </button>
 
-    <button class="footer-btn copy-btn" data-copy="kvasthecat">
+    <button
+      class="footer-btn copy-btn"
+      data-copy="kvasthecat">
+
       kvasthecat
+
     </button>
 
   </div>
+
 </footer>
 
+
+<!-- SCRIPT -->
+
 <script>
-// copy contacts
 
 document.querySelectorAll('.copy-btn').forEach(btn=>{
+
   btn.addEventListener('click',()=>{
+
     navigator.clipboard.writeText(btn.dataset.copy);
 
-    const old=btn.textContent;
-    btn.textContent='Скопировано!';
+    const old = btn.textContent;
+
+    btn.textContent = 'Скопировано!';
 
     setTimeout(()=>{
-      btn.textContent=old;
+
+      btn.textContent = old;
+
     },1200);
+
   });
+
 });
+
 </script>
 
 </body>
