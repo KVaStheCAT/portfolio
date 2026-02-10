@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KVaS Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --red:#e61e1e;
+  --gray:#d9d9d9;
+  --white:#ffffff;
+  --dark:#222;
+  --font:'Montserrat',sans-serif;
+  --max:1200px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  font-family:var(--font);
+  color:var(--dark);
+  padding-top:60px;
+  padding-bottom:60px;
+}
+
+img{display:block;max-width:100%;}
+
+.container{
+  max-width:var(--max);
+  margin:auto;
+  padding:0 1rem;
+}
+
+h1,h2,h3{color:var(--red);}
+
+p{max-width:850px;margin:.6rem auto;}
+
+/* ===== FIXED BARS ===== */
+header,footer{
+  position:fixed;
+  left:0;
+  width:100%;
+  height:60px;
+  background:var(--red);
+  z-index:100;
+}
+
+header{top:0;}
+footer{bottom:0;}
+
+.header-inner,.footer-inner{
+  height:100%;
+  display:flex;
+  align-items:center;
+}
+
+.header-inner{justify-content:flex-start;}
+.footer-inner{justify-content:center;gap:1rem;}
+
+.logo{
+  font-size:2.2rem;
+  font-weight:800;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:white;
+}
+
+.footer-btn{
+  background:var(--red);
+  color:white;
+  border:2px solid white;
+  border-radius:999px;
+  padding:.4rem 1rem;
+  cursor:pointer;
+}
+
+/* ===== SECTIONS ===== */
+section{padding:3rem 0;} 
+
+/* отдельный фон для hero */
+.hero{
+  background:var(--gray);
+}
+.section-gray{background:var(--gray);} 
+.section-white{background:var(--white);} 
+
+/* ===== HERO ===== */
+.hero{
+  text-align:center;
+  background:var(--gray);
+}
+
+/* ===== SKINS ===== */
+
+.skins-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.skin-item {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  overflow: visible;
+  position: relative;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  align-items: center;
+  gap: 2rem;
+
+  padding: 4rem 1rem 6rem;
+}
+
+.skin-item:not(:first-child) {
+  margin-top: -140px;
+}
+
+.skin-item:nth-child(odd) {
+  background: var(--gray);
+}
+
+.skin-item:nth-child(even) {
+  background: var(--white);
+}
+
+.skin-item:first-child {
+  background: var(--white) !important;
+}
+
+.skin-inner {
+  max-width: var(--max);
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  align-items: center;
+  gap: 2rem;
+}
+
+.skin-image {
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  background: var(--red);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  transform: translateY(40px);
+}
+
+.skin-image img {
+  width: 115%;
+  height: 115%;
+  object-fit: contain;
+}
+
+.skin-item:nth-child(even) .skin-image img {
+  transform: scaleX(-1);
+}
+
+/* === ИЗМЕНЕНИЯ ДЛЯ ЦЕНТРИРОВАНИЯ ТЕКСТА === */
+.skin-text {
+  text-align: center; /* Центрируем текст */
+  font-size: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Центрируем содержимое по горизонтали */
+  justify-content: center; /* Центрируем по вертикали */
+}
+
+.skin-text h3 {
+  font-size: 1.9rem;
+  text-align: center; /* Заголовок тоже по центру */
+  width: 100%;
+}
+
+.skin-text p {
+  margin: 0.5rem 0;
+  text-align: center; /* Параграфы по центру */
+  width: 100%;
+}
+
+/* Убираем выравнивание по правому краю для четных элементов */
+.skin-item:nth-child(even) .skin-text,
+.skin-item:nth-child(even) .skin-text h3,
+.skin-item:nth-child(even) .skin-text p {
+  text-align: center; /* Теперь все по центру */
+}
+
+/* ===== ADAPTIVE ===== */
+@media (max-width: 700px) {
+  .skin-image {
+    width: 300px;
+    height: 300px;
+    transform: translateY(120px);
+  }
+
+  .skin-item:not(:first-child) {
+    margin-top: -70px;
+  }
+
+  /* Убедимся, что на мобильных текст тоже по центру */
+  .skin-text,
+  .skin-item:nth-child(even) .skin-text {
+    text-align: center;
+  }
+}
+
+/* ===== MODELS ===== */
+
+.models-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:1.8rem;
+  margin-top:2rem;
+}
+
+.model-card{
+  position:relative;
+  aspect-ratio:1/1;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  align-items:center;
+  padding:1rem;
+  border-radius:20px;
+  overflow:visible;
+  font-weight:600;
+  color:var(--red);
+}
+
+.model-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  position:absolute;
+  inset:0;
+  z-index:0;
+}
+
+.model-card span{
+  position:relative;
+  z-index:1;
+  background:rgba(255,255,255,.85);
+  padding:.4rem .8rem;
+  border-radius:12px;
+}
+
+.section-gray .model-card{background:var(--white);} 
+.section-white .model-card{background:var(--gray);} 
+
+/* ===== ADDON ===== */
+
+.addon-box{
+  width:100%;
+  max-width:800px;
+  aspect-ratio:16/9;
+  margin:2rem auto 0;
+  overflow:visible;
+}
+
+.addon-box iframe{
+  width:100%;
+  height:100%;
+  border:none;
+}
+
+/* ===== ADAPTIVE ===== */
+@media(max-width:700px){
+
+  .skin-image{
+    width:300px;
+    height:300px;
+    transform:translateY(120px);
+  }
+
+  .skin-item:not(:first-child){
+    margin-top:-70px;
+  }
+
+  .skin-text,
+  .skin-item:nth-child(even) .skin-text{
+    text-align:center;
+  }
+}
+
+
+  .skin-item:not(:first-child){
+    margin-top:-90px;
+  }
+
+  .skin-text,
+  .skin-item:nth-child(even) .skin-text{
+    text-align:center;
+  }
+
+/* === AUTO BACKGROUNDS === */
+
+/* чередование всех основных блоков в main */
+main > *:nth-child(odd){
+  background:var(--gray);
+}
+
+main > *:nth-child(even){
+  background:var(--white);
+}
+
+/* если внутри есть вложенные секции (например, модели) */
+main > * > section:nth-child(odd){
+  background:var(--gray);
+}
+
+main > * > section:nth-child(even){
+  background:var(--white);
+}
+
+/* чередование скинов */
+
+.skin-item:nth-child(odd){
+  background:var(--white);
+}
+
+.skin-item:nth-child(even){
+  background:var(--gray);
+}
+
+
+
+/* === FIX BACKGROUNDS, MODELS & SKINS === */
+
+/* БАЗОВОЕ ЧЕРЕДОВАНИЕ ФОНА ДЛЯ ВСЕХ БЛОКОВ */
+main > *{
+  width:100%;
+}
+
+main > *:nth-child(odd){
+  background:var(--gray) !important;
+}
+
+main > *:nth-child(even){
+  background:var(--white) !important;
+}
+
+/* МОДЕЛИ: фон берём от родителя, подложки отдельно */
+.models,
+.models-section,
+.models-block{
+  background:inherit !important;
+}
+
+.model-card,
+.model-item{
+  background:rgba(255,255,255,0.9);
+}
+
+main > *:nth-child(odd) .model-card,
+main > *:nth-child(odd) .model-item{
+  background:rgba(255,255,255,0.85);
+}
+
+main > *:nth-child(even) .model-card,
+main > *:nth-child(even) .model-item{
+  background:rgba(230,230,230,0.9);
+}
+
+/* КРУГИ СКИНОВ: разрешаем выход и лёгкое обрезание */
+.skin-item{
+  position:relative;
+  overflow:hidden; /* чтобы низ обрезался */
+}
+
+.skin-circle{
+  position:relative;
+  z-index:1;
+  transform:translateY(40px);
+}
+
+/* ЧТОБЫ ПОСЛЕДНИЙ СКИН ТОЖЕ ОБРЕЗАЛСЯ */
+.skin-item:last-child{
+  padding-bottom:80px;
+  overflow:hidden;
+}
+
+/* ФИКС YOUTUBE */
+.video-wrapper,
+.youtube,
+.video{
+  width:100%;
+  max-width:900px;
+  margin:0 auto;
+  aspect-ratio:16/9;
+}
+
+.video-wrapper iframe,
+.youtube iframe,
+.video iframe{
+  width:100% !important;
+  height:100% !important;
+  min-height:300px;
+}
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="container header-inner">
+    <div class="logo">KVAS PORTFOLIO</div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero section-gray">
+  <div class="container">
+    <h1>text text text<br>text text</h1>
+    <p>text text text text text</p>
+    <p>text text text text</p>
+  </div>
+</section>
+
+<!-- SKINS -->
+<section style="padding-top:0;">
+
+  <div class="skins-list">
+
+    <div class="skin-item">
+      <div class="skin-inner">
+        <div class="skin-image">
+          <img src="skin1.png">
+        </div>
+        <div class="skin-text">
+          <h3>Skin name</h3>
+          <p>text text text</p>
+          <p>text text text</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="skin-item">
+      <div class="skin-inner">
+        <div class="skin-text">
+          <h3>Skin name</h3>
+          <p>text text text</p>
+          <p>text text text</p>
+        </div>
+        <div class="skin-image">
+          <img src="skin2.png">
+        </div>
+      </div>
+    </div>
+
+    <div class="skin-item">
+      <div class="skin-inner">
+        <div class="skin-image">
+          <img src="skin3.png">
+        </div>
+        <div class="skin-text">
+          <h3>Skin name</h3>
+          <p>text text text</p>
+          <p>text text text</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="skin-item">
+      <div class="skin-inner">
+        <div class="skin-image">
+          <img src="skin3.png">
+        </div>
+        <div class="skin-text">
+          <h3>Skin name</h3>
+          <p>text text text</p>
+          <p>text text text</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MODELS -->
+<section class="section-white">
+  <div class="container">
+    <h2>3D MODELS</h2>
+
+    <div class="models-grid">
+
+      <div class="model-card">
+        <img src="model1.png">
+        <span>Model</span>
+      </div>
+
+      <div class="model-card">
+        <img src="model2.png">
+        <span>Model</span>
+      </div>
+
+      <div class="model-card">
+        <img src="model3.png">
+        <span>Model</span>
+      </div>
+
+      <div class="model-card">
+        <img src="model4.png">
+        <span>Model</span>
+      </div>
+       
+
+    </div>
+  </div>
+</section>
+
+<!-- ADDON -->
+<section class="section-gray">
+  <div class="container">
+    <h2 style="text-align:center;">ADD-ON</h2>
+
+    <p>Описание аддона. Здесь можно написать, что он делает.</p>
+    <p>Как используется и чем полезен.</p>
+
+    <div class="addon-box">
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container footer-inner">
+
+    <button class="footer-btn copy-btn" data-copy="vladkuprin.mouse@gmail.com">
+      vladkuprin.mouse@gmail.com
+    </button>
+
+    <button class="footer-btn copy-btn" data-copy="kvasthecat">
+      kvasthecat
+    </button>
+
+  </div>
+</footer>
+
+<script>
+// copy contacts
+
+document.querySelectorAll('.copy-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    navigator.clipboard.writeText(btn.dataset.copy);
+
+    const old=btn.textContent;
+    btn.textContent='Скопировано!';
+
+    setTimeout(()=>{
+      btn.textContent=old;
+    },1200);
+  });
+});
+</script>
+
+</body>
+</html>
